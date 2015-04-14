@@ -33,8 +33,7 @@ Maximun differences occur between Mercator (loxodromic is a straight line)
 and Gnomonic projection (geodesic is a straight line).
  
 ![Mercator](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/KLAX_LEMD_merc.png)
-Mercator projection
-Proj4 string:
+Mercator projection - Proj4 string:
 '+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'
 
 
@@ -45,8 +44,7 @@ Proj4 string:
 
 
 ![Azimuthal Equidistant](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/KLAX_LEMD_azim.png)
-Azimuthal Equidistant projection (centered on 50W and 30N)
-Proj4 string:
+Azimuthal Equidistant projection (centered on 50W and 30N) - Proj4 string:
 '+proj=aeqd +lat_0=30 +lon_0=-50 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'
 
 
@@ -59,15 +57,13 @@ Proj4 string:
 ##Antimeridian problem solved
 You can see the problem of calculating lines crossing antimeridian is solved.
 
-![Mercator](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/Antimeridian_greatcircles.png)
-Mercator projection
-Proj4 string:
+![Mercator](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/Antimeridian.png)
+Mercator projection - Proj4 string:
 '+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'
 
 
-![Mercator](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/Antimeridian_greatcircles_2.png)
-Mercator projection
-Proj4 string:
+![Mercator](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/Antimeridian_2.png)
+Mercator projection - Proj4 string:
 '+proj=merc +lon_0=150 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'
 
 
