@@ -43,7 +43,7 @@ _'+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'_
 ![Gnomonic](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/KLAX_LEMD_gnom.png)
 __Gnomonic projection__ (centered: 50W and 60N)
 Proj4 string:
-_'+proj=laea +lat_0=60 +lon_0=-50 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'_
+_'+proj=gnom +lat_0=60 +lon_0=-50 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'_
 
 
 
@@ -70,7 +70,7 @@ _'+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'_
 
 
 ![Mercator](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/Antimeridian_2.png)
-__Mercator projection__ - Proj4 string:
+__Mercator projection__ (centered: 150E) - Proj4 string:
 _'+proj=merc +lon_0=150 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'_
 
 
