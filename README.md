@@ -32,25 +32,25 @@ and straight lines between the same points.
 Maximun differences occur between Mercator (loxodromic is a straight line) 
 and Gnomonic projection (geodesic is a straight line).
  
-![](KLAX_LEMD_merc.png)
+![Mercator](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/KLAX_LEMD_merc.png)
 Mercator projection
 Proj4 string:
 '+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'
 
 
-![](KLAX_LEMD_gnom.png)
+![Gnomonic](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/KLAX_LEMD_gnom.png)
 Gnomonic projection (centered on 50W and 60N)
 Proj4 string:
 '+proj=laea +lat_0=60 +lon_0=-50 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'
 
 
-![](KLAX_LEMD_azim.png)
+![Azimuthal Equidistant](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/KLAX_LEMD_azim.png)
 Azimuthal Equidistant projection (centered on 50W and 30N)
 Proj4 string:
 '+proj=aeqd +lat_0=30 +lon_0=-50 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'
 
 
-![](KLAX_LEMD_laea.png)
+![Lambert Azimuthal Equal Area](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/KLAX_LEMD_laea.png)
 Lambert Azimuthal Equal Area projection(centered: 50W and 60N)
 Proj4 string:
 '+proj=laea +lat_0=60 +lon_0=-50 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'
@@ -59,13 +59,13 @@ Proj4 string:
 ##Antimeridian problem solved
 You can see the problem of calculating lines crossing antimeridian is solved.
 
-![](Antimeridian_greatcircles.png)
+![Mercator](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/Antimeridian_greatcircles.png)
 Mercator projection
 Proj4 string:
 '+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'
 
 
-![](Antimeridian_greatcircles_2.png)
+![Mercator](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/Antimeridian_greatcircles_2.png)
 Mercator projection
 Proj4 string:
 '+proj=merc +lon_0=150 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'
