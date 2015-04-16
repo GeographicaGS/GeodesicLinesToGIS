@@ -87,17 +87,17 @@ Usage is very simple. There are two modes:
 
 ###Single input
 Single input usage.
-```
+```python
 from geodesicline2gisfile import GeodesicLine2Gisfile
 ```
 lons_lats: input coordinates.
 (start longitude, start latitude, end longitude, end latitude) 
-```
+```python
 lons_lats = (-3.6,40.5,-118.4,33.9)
 ```
 
 Folder path to store output file and filename:
-```
+```python
 folderpath = '/tmp'
 
 layername = "geodesicline"
@@ -107,14 +107,14 @@ Create object. You can pass two parameters:
 - antimeridian: [True | False] to solve antimeridian problem (default is True).
 - prints: [True | False] print output messages (default is True).
 
-```
+```python
 gctg = GeodesicLine2Gisfile()
 ```
 Launch computations. You can pass two parameter:
 - lons_lats: input coords returned by gcComp.
 - km_pts: compute one point each n km (default is 20 km)
 
-```
+```python
 cd = gtg.gdlComp(lons_lats, km_pts=30)
 ```
 
@@ -122,7 +122,7 @@ Dump geodetic line coords to Linestring Feature and store in a GIS file.
 
 Output formats: "ESRI Shapefile" (default), "GeoJSON"
 
-```
+```python
 # shapefile output
 gtg.gdlToGisFile(cd, folderpath, layername)
 
@@ -132,7 +132,7 @@ gtg.gdlToGisFile(cd, folderpath, layername, fmt="GeoJSON")
 
 ###Multiple input
 Multiple input usage.
-```
+```python
 from geodesicline2gisfile import GeodesicLine2Gisfile
 
 data = [
