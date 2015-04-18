@@ -34,9 +34,13 @@ folderpath = "/tmp"
 
 layername = "geodesicline"
 
-gtg = GeodesicLine2Gisfile()
-
-cd = gtg.gdlComp(lons_lats)
-
-gtg.gdlToGisFile(cd, folderpath, layername)
-gtg.gdlToGisFile(cd, folderpath, layername, fmt="GeoJSON")
+def main():
+    gtg = GeodesicLine2Gisfile()
+    
+    cd = gtg.gdlComp(lons_lats)
+    
+    gtg.gdlToGisFile(cd, folderpath, layername)
+    gtg.gdlToGisFile(cd, folderpath, layername, fmt="GeoJSON")
+    
+if __name__ == '__main__':
+    main()
