@@ -1,4 +1,4 @@
-#Geodesic Lines to GIS
+# Geodesic Lines to GIS
 Computes geodesic lines from start point to end point and stores them in a GIS 
 file (Shapefile and GeoJSON). A geodesic is the shortest path between two 
 points on a curved surface, like an ellipsoid of revolution ([Read more on Wikipedia](http://en.wikipedia.org/wiki/Geodesics_on_an_ellipsoid)).
@@ -20,7 +20,15 @@ Reference System) of GIS file outputs are EPSG:4326.
 In the examples section you can see the problem of calculating lines crossing 
 antimeridian is solved.
 
-##Geodesic lines examples
+## Installing
+You can install this package from PYPI:
+https://pypi.python.org/pypi/GeodesicLinesToGIS
+
+```bash
+$ pip install GeodesicLinesToGIS
+```
+
+## Geodesic lines examples
 Below are shown different geodesic lines computed with this library on several 
 map projections. Also you can see the relation with rhumb lines (loxodromic) 
 and straight lines between the same points.
@@ -60,7 +68,7 @@ _'+proj=laea +lat_0=60 +lon_0=-50 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'_
 
 
 
-##Antimeridian problem solved
+## Antimeridian problem solved
 You can see the problem of calculating lines crossing antimeridian is solved.
 
 ![Mercator2](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/Antimeridian.png)
@@ -75,17 +83,17 @@ _'+proj=merc +lon_0=150 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'_
 
 
 
-##Requirements
+## Requirements
 - Pyproj, https://github.com/jswhit/pyproj
 - Fiona, https://github.com/Toblerity/Fiona
 - Shapely, https://github.com/Toblerity/Shapely
 
-##Usage
+## Usage
 Usage is very simple. There are two modes:
 - Single input (one start/end).
 - Multiple input (more than one start/end).
 
-###Single input
+### Single input
 Single input usage.
 ```python
 from geodesicline2gisfile import GeodesicLine2Gisfile
@@ -130,7 +138,7 @@ gtg.gdlToGisFile(cd, folderpath, layername)
 gtg.gdlToGisFile(cd, folderpath, layername, fmt="GeoJSON")
 ```
 
-###Multiple input
+### Multiple input
 Multiple input usage.
 ```python
 from geodesicline2gisfile import GeodesicLine2Gisfile
@@ -156,19 +164,19 @@ gtg.gdlToGisFileMulti(data, folderpath, layername)
 ```
 
 
-##About author
+## About author
 Developed by Cayetano Benavent.
 GIS Analyst at Geographica.
 
 http://www.geographica.gs
 
-##License
+## License
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
 
-##Third-Party licenses
+## Third-Party licenses
 You can read Pyproj, Fiona and Shapely licenses in the next links:
 https://raw.githubusercontent.com/jswhit/pyproj/master/LICENSE
 https://raw.githubusercontent.com/Toblerity/Shapely/master/LICENSE.txt
