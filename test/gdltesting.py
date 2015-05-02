@@ -7,6 +7,7 @@
 #  three libraries: Pyproj, Fiona and Shapely
 #
 #  Author: Cayetano Benavent, 2015.
+#  https://github.com/GeographicaGS/GeodesicLinesToGIS
 #  
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -25,30 +26,22 @@
 # 
 
 
-from geodesicline2gisfile import GeodesicLine2Gisfile
+from geodesiclinestogis.geodesicline2gisfile import GeodesicLine2Gisfile
 
-data = [
-        (-6.,37.,-145.,11.),
-        (-150.,37.,140.,11.),
-        (-6.,37.,120.,50.),
-        (-3.6,40.5,-118.4,33.9),
-        (-118.4,33.9,139.8,35.5),
-        (-118.4,33.9,104.,1.35),
-        (-118.4,33.9,151.,-33.9),
-        (-20.4,33.9,178.,-33.9)
-    ]
 
-folderpath = "/tmp/geod_line"
+lons_lats = (-3.6,40.5,-118.4,33.9)
+
+folderpath = "/tmp"
 
 layername = "geodesicline"
-    
 
 def main():
-    
     gtg = GeodesicLine2Gisfile()
     
-    gtg.gdlToGisFileMulti(data, folderpath, layername)
+    cd = gtg.gdlComp(lons_lats)
+    
+    gtg.gdlToGisFile(cd, folderpath, layername)
+    gtg.gdlToGisFile(cd, folderpath, layername, fmt="GeoJSON")
     
 if __name__ == '__main__':
     main()
-

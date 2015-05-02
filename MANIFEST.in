@@ -1,0 +1,9 @@
+# This file is part of GeodesicLinesToGIS.
+# https://github.com/GeographicaGS/GeodesicLinesToGIS
+
+# Licensed under the GPLv2 license:
+# https://www.gnu.org/licenses/gpl-2.0.txt
+# Copyright (c) 2015, Cayetano Benavent <cayetanobv@gmail.com>
+
+include README.rst
+prune data
