@@ -96,7 +96,7 @@ Usage is very simple. There are two modes:
 ### Single input
 Single input usage.
 ```python
-from geodesicline2gisfile import GeodesicLine2Gisfile
+from geodesiclinestogis import GeodesicLine2Gisfile
 ```
 lons_lats: input coordinates.
 (start longitude, start latitude, end longitude, end latitude) 
@@ -116,7 +116,7 @@ Create object. You can pass two parameters:
 - prints: [True | False] print output messages (default is True).
 
 ```python
-gctg = GeodesicLine2Gisfile()
+gtg = GeodesicLine2Gisfile()
 ```
 Launch computations. You can pass two parameter:
 - lons_lats: input coords returned by gcComp.
@@ -141,7 +141,7 @@ gtg.gdlToGisFile(cd, folderpath, layername, fmt="GeoJSON")
 ### Multiple input
 Multiple input usage.
 ```python
-from geodesicline2gisfile import GeodesicLine2Gisfile
+from geodesiclinestogis import GeodesicLine2Gisfile
 
 data = [
         (-6.,37.,-145.,11.),

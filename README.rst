@@ -59,7 +59,7 @@ Single input usage.
 
 .. code:: python
 
-    from geodesicline2gisfile import GeodesicLine2Gisfile
+    from geodesiclinestogis import GeodesicLine2Gisfile
 
 lons\_lats: input coordinates. (start longitude, start latitude, end
 longitude, end latitude)
@@ -82,7 +82,7 @@ False] to solve antimeridian problem (default is True). - prints: [True
 
 .. code:: python
 
-    gctg = GeodesicLine2Gisfile()
+    gtg = GeodesicLine2Gisfile()
 
 Launch computations. You can pass two parameter: - lons\_lats: input
 coords returned by gcComp. - km\_pts: compute one point each n km
@@ -111,7 +111,7 @@ Multiple input usage.
 
 .. code:: python
 
-    from geodesicline2gisfile import GeodesicLine2Gisfile
+    from geodesiclinestogis import GeodesicLine2Gisfile
 
     data = [
             (-6.,37.,-145.,11.),
