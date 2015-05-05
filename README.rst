@@ -1,6 +1,9 @@
 Geodesic Lines to GIS
 =====================
 
+.. image:: https://travis-ci.org/GeographicaGS/GeodesicLinesToGIS.svg?branch=master
+    :target: https://travis-ci.org/GeographicaGS/GeodesicLinesToGIS
+
 Computes geodesic lines from start point to end point and stores them in
 a GIS file (Shapefile and GeoJSON). A geodesic is the shortest path
 between two points on a curved surface, like an ellipsoid of revolution
