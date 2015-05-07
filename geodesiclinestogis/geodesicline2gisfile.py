@@ -36,16 +36,53 @@ class GeodesicLine2Gisfile(object):
     """
     Compute geodesic line from start start lon/lat to
     end lon/lat and dumps to a gis file (Shapefile
-    and GeoJSON).
+    and GeoJSON). The problem of geodesic lines crossing 
+    antimeridian is solved.
+    
+    Author: Cayetano Benavent, 2015.
+    https://github.com/GeographicaGS/GeodesicLinesToGIS
+    
+    Usage is very simple. There are two modes:
+        - Single input (one start/end).
+        - Multiple input (more than one start/end).
+        
+    Single input example:
+        >>> from geodesiclinestogis import GeodesicLine2Gisfile
+        >>> lons_lats = (-3.6,40.5,-118.4,33.9)
+        >>> folderpath = '/tmp'
+        >>> layername = "geodesicline"
+        >>> gtg = GeodesicLine2Gisfile()
+        >>> cd = gtg.gdlComp(lons_lats, km_pts=30)
+        #shapefile output
+        >>> gtg.gdlToGisFile(cd, folderpath, layername)
+        #geojson output
+        >>> gtg.gdlToGisFile(cd, folderpath, layername, fmt="GeoJSON")
+    
+    Multiple input example:
+        >>> from geodesiclinestogis import GeodesicLine2Gisfile
+        >>> data = [
+                (-6.,37.,-145.,11.),
+                (-150.,37.,140.,11.),
+                (-6.,37.,120.,50.),
+                (-3.6,40.5,-118.4,33.9),
+                (-118.4,33.9,139.8,35.5),
+                (-118.4,33.9,104.,1.35),
+                (-118.4,33.9,151.,-33.9),
+                (-20.4,33.9,178.,-33.9)
+            ]
+        >>> folderpath = "/tmp/geod_line"
+        >>> layername = "geodesicline"
+        >>> gtg = GeodesicLine2Gisfile()
+        >>> gtg.gdlToGisFileMulti(data, folderpath, layername)
     
     """
     
     
     def __init__(self, antimeridian=True, prints=True):
         """
-        antimeridian: solving antimeridian problem [True/False].
-        
-        prints: print output messages [True/False].
+            antimeridian: solving antimeridian problem [True/False].
+            
+            prints: print output messages [True/False].
         
         """
         self.__antimeridian = antimeridian
@@ -56,10 +93,10 @@ class GeodesicLine2Gisfile(object):
         """
         Compute geodesic line
         
-        lons_lats: input coordinates.
-        (start longitude, start latitude, end longitude, end latitude) 
-        
-        km_pts: compute one point each 20 km (default).
+            lons_lats: input coordinates.
+            (start longitude, start latitude, end longitude, end latitude) 
+            
+            km_pts: compute one point each 20 km (default).
         
         """
         
@@ -94,13 +131,13 @@ class GeodesicLine2Gisfile(object):
         Dump geodesic line coords to ESRI Shapefile 
         and GeoJSON Linestring Feature
         
-        coords: input coords returned by gcComp.
-        
-        folderpath: folder to store output file.
-        
-        layername: output filename.
-        
-        fmt: output format ("ESRI Shapefile" (default), "GeoJSON").
+            coords: input coords returned by gcComp.
+            
+            folderpath: folder to store output file.
+            
+            layername: output filename.
+            
+            fmt: output format ("ESRI Shapefile" (default), "GeoJSON").
         
         """
         
@@ -157,7 +194,7 @@ class GeodesicLine2Gisfile(object):
         """
         Run creation for a multi input: a list of lat/lon.
         
-        data: a list with input coordinates.
+            data: a list with input coordinates.
         
             [
               (start longitude, start latitude, end longitude, end latitude),
@@ -167,11 +204,11 @@ class GeodesicLine2Gisfile(object):
               ...
             ]
         
-        folderpath: folder to store output files.
-        
-        layername: output base filename (an ordinal integer is added at the end).
-        
-        gfs: GeoJSON output format [True (default)|False], in addition to Shapefile.
+            folderpath: folder to store output files.
+            
+            layername: output base filename (an ordinal integer is added at the end).
+            
+            gfs: GeoJSON output format [True (default)|False], in addition to Shapefile.
         
         """
         
@@ -206,7 +243,7 @@ class GeodesicLine2Gisfile(object):
     
     def __antiMeridianCut(self, geom):
         """
-        Solving antimeridian problem...
+        Solving antimeridian problem.
         
         """
         
