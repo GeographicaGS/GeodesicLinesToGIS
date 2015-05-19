@@ -13,13 +13,13 @@ Wikipedia <http://en.wikipedia.org/wiki/Geodesics_on_an_ellipsoid>`__).
 This code is builded on top of three libraries: Pyproj, Fiona and
 Shapely.
 
-There are several libraries to compute geodesic distances solving the
-geodesic inverse problem (to find the shortest path between two given
-points). I chose Pyproj because it works fine for this purpose and is an
-interface to a widely used library in the geospatial industry (Proj4 C
-library). Actually Proj4 C library routines used to compute geodesic
-distance are a simple transcription from excellent Geographiclib C++
-Library writed by Charles Karney. You can see more about this here:
+There are several libraries to compute geodesic distances solving the geodesic 
+inverse problem (to find the shortest path between two given points). 
+I chose Pyproj because it works fine for this purpose and is an interface to a 
+widely used library in the geospatial industry (Proj4 C library). Actually Proj4 C 
+library (>= v.4.9.0) routines used to compute geodesic distance are a simple transcription 
+from excellent Geographiclib C++ Library developed by Charles Karney. Proj4 C library < v.4.9.0 
+uses Paul D. Thomas algorithms. You can see more about this here:
 `GeodeticMusings: a little benchmark of three Python libraries to
 compute geodesic
 distances <https://github.com/cayetanobv/GeodeticMusings>`__.
