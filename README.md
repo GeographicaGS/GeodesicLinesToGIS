@@ -1,6 +1,7 @@
 # Geodesic Lines to GIS
 
 [![Build Status](https://travis-ci.org/GeographicaGS/GeodesicLinesToGIS.svg?branch=master)](https://travis-ci.org/GeographicaGS/GeodesicLinesToGIS)
+[![PyPI version](https://badge.fury.io/py/GeodesicLinesToGIS.svg)](http://badge.fury.io/py/GeodesicLinesToGIS)
 
 Computes geodesic lines from start point to end point and stores them in a GIS 
 file (Shapefile and GeoJSON). A geodesic is the shortest path between two 
