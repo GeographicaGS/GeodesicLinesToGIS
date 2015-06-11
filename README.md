@@ -24,6 +24,10 @@ Reference System) of GIS file outputs are EPSG:4326.
 In the examples section you can see the problem of calculating lines crossing 
 antimeridian is solved.
 
+Read more on:
+
+[Link to Geographica Blog] (http://www.blog-geographica.com/2015/06/11/geodesic-lines-gis/)
+
 ## Installing
 You can install this package from PYPI:
 https://pypi.python.org/pypi/GeodesicLinesToGIS
