@@ -79,17 +79,17 @@ Folder path to store output file and filename:
 
     layername = "geodesicline"
 
-Create object. You can pass two parameters: - antimeridian: [True \|
-False] to solve antimeridian problem (default is True). - prints: [True
-\| False] print output messages (default is True).
+Create object. You can pass two parameters: 
+- antimeridian: [True, False] to solve antimeridian problem (default is True). 
+- prints: [True, False] print output messages (default is True).
 
 .. code:: python
 
     gtg = GeodesicLine2Gisfile()
 
-Launch computations. You can pass two parameter: - lons\_lats: input
-coords returned by gcComp. - km\_pts: compute one point each n km
-(default is 20 km)
+Launch computations. You can pass two parameter: 
+- lons\_lats: input coords returned by gcComp. 
+- km\_pts: compute one point each n km (default is 20 km)
 
 .. code:: python
 
@@ -157,10 +157,3 @@ You can read Pyproj, Fiona and Shapely licenses in the next links:
 https://raw.githubusercontent.com/jswhit/pyproj/master/LICENSE
 https://raw.githubusercontent.com/Toblerity/Shapely/master/LICENSE.txt
 https://raw.githubusercontent.com/Toblerity/Fiona/master/LICENSE.txt
-
-.. |Mercator1| image:: https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/KLAX_LEMD_merc.png
-.. |Gnomonic| image:: https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/KLAX_LEMD_gnom.png
-.. |Azimuthal Equidistant| image:: https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/KLAX_LEMD_azim.png
-.. |Lambert Azimuthal Equal Area| image:: https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/KLAX_LEMD_laea.png
-.. |Mercator2| image:: https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/Antimeridian.png
-.. |Mercator3| image:: https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/Antimeridian_2.png

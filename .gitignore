@@ -1,0 +1,5 @@
+*.pyc
+dist/
+GeodesicLinesToGIS.egg-info/
+.pypirc
+rstgenerator.sh

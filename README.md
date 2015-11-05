@@ -3,26 +3,28 @@
 [![Build Status](https://travis-ci.org/GeographicaGS/GeodesicLinesToGIS.svg?branch=master)](https://travis-ci.org/GeographicaGS/GeodesicLinesToGIS)
 [![PyPI version](https://badge.fury.io/py/GeodesicLinesToGIS.svg)](http://badge.fury.io/py/GeodesicLinesToGIS)
 
-Computes geodesic lines from start point to end point and stores them in a GIS 
-file (Shapefile and GeoJSON). A geodesic is the shortest path between two 
+Computes geodesic lines from start point to end point and stores them in a GIS
+file (Shapefile and GeoJSON). A geodesic is the shortest path between two
 points on a curved surface, like an ellipsoid of revolution ([Read more on Wikipedia](http://en.wikipedia.org/wiki/Geodesics_on_an_ellipsoid)).
 
 This code is builded on top of three libraries: Pyproj, Fiona and Shapely.
 
-There are several libraries to compute geodesic distances solving the geodesic 
-inverse problem (to find the shortest path between two given points). 
-I chose Pyproj because it works fine for this purpose and is an interface to a 
-widely used library in the geospatial industry (Proj4 C library). Actually Proj4 C 
-library (>= v.4.9.0) routines used to compute geodesic distance are a simple transcription 
-from excellent Geographiclib C++ Library developed by Charles Karney. Proj4 C library < v.4.9.0 
-uses Paul D. Thomas algorithms. You can see more about this here: 
+There are several libraries to compute geodesic distances solving the geodesic
+inverse problem (to find the shortest path between two given points).
+I chose Pyproj because it works fine for this purpose and is an interface to a
+widely used library in the geospatial industry (Proj4 C library). Actually Proj4 C
+library (>= v.4.9.0) routines used to compute geodesic distance are a simple transcription
+from excellent Geographiclib C++ Library developed by Charles Karney. Proj4 C library < v.4.9.0
+uses Paul D. Thomas algorithms. You can see more about this here:
 [GeodeticMusings: a little benchmark of three Python libraries to compute geodesic distances](https://github.com/cayetanobv/GeodeticMusings).
 
-All computations are performed with WGS84 ellipsoid and the CRS (Coordinate 
+All computations are performed with WGS84 ellipsoid and the CRS (Coordinate
 Reference System) of GIS file outputs are EPSG:4326.
 
-In the examples section you can see the problem of calculating lines crossing 
+In the examples section you can see the problem of calculating lines crossing
 antimeridian is solved.
+
+Numpy array is supported as inputa data.
 
 Read more on:
 
@@ -37,19 +39,19 @@ $ pip install GeodesicLinesToGIS
 ```
 
 ## Geodesic lines examples
-Below are shown different geodesic lines computed with this library on several 
-map projections. Also you can see the relation with rhumb lines (loxodromic) 
+Below are shown different geodesic lines computed with this library on several
+map projections. Also you can see the relation with rhumb lines (loxodromic)
 and straight lines between the same points.
 
 - Geodesic line (computed): green.
 - Loxodromic: red.
 - Straight line: dashed black.
 
-Maximun differences occur between Mercator (loxodromic is a straight line) 
+Maximun differences occur between Mercator (loxodromic is a straight line)
 and Gnomonic projection (geodesic is a straight line).
 
 [Data and maps are here] (https://github.com/GeographicaGS/GeodesicLinesToGIS/tree/master/data)
- 
+
 ![Mercator1](https://github.com/GeographicaGS/GeodesicLinesToGIS/blob/master/data/img/KLAX_LEMD_merc.png)
 __Mercator projection__ - Proj4 string:
 _'+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs'_
@@ -107,7 +109,7 @@ Single input usage.
 from geodesiclinestogis import GeodesicLine2Gisfile
 ```
 lons_lats: input coordinates.
-(start longitude, start latitude, end longitude, end latitude) 
+(start longitude, start latitude, end longitude, end latitude)
 ```python
 lons_lats = (-3.6,40.5,-118.4,33.9)
 ```
@@ -162,15 +164,42 @@ data = [
         (-20.4,33.9,178.,-33.9)
     ]
 
-folderpath = "/tmp/geod_line"
+folderpath = "/tmp/geod_line_mu"
 
 layername = "geodesicline"
-    
+
 gtg = GeodesicLine2Gisfile()
-    
+
 gtg.gdlToGisFileMulti(data, folderpath, layername)
 ```
 
+### Numpy array (multiple) input
+Numpy array input usage.
+```python
+import numpy as np
+from geodesiclinestogis import GeodesicLine2Gisfile
+
+data_ = [
+        (-6.,37.,-145.,11.),
+        (-150.,37.,140.,11.),
+        (-6.,37.,120.,50.),
+        (-3.6,40.5,-118.4,33.9),
+        (-118.4,33.9,139.8,35.5),
+        (-118.4,33.9,104.,1.35),
+        (-118.4,33.9,151.,-33.9),
+        (-20.4,33.9,178.,-33.9)
+    ]
+
+data = np.array(data_)
+
+folderpath = "/tmp/geod_line_np"
+
+layername = "geodesicline"
+
+gtg = GeodesicLine2Gisfile()
+
+gtg.gdlToGisFileMulti(data, folderpath, layername)
+```
 
 ## About author
 Developed by Cayetano Benavent.
