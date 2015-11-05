@@ -1,5 +1,6 @@
 *.pyc
 dist/
+build/
 GeodesicLinesToGIS.egg-info/
 .pypirc
 rstgenerator.sh
