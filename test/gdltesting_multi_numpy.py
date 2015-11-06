@@ -50,8 +50,8 @@ layername = "geodesicline"
 def main():
 
     gtg = GeodesicLine2Gisfile()
-
-    gtg.gdlToGisFileMulti(data, folderpath, layername)
+    props = ["prop01","prop02","prop03","prop04","prop05","prop06","prop07","prop08",]
+    gtg.gdlToGisFileMulti(data, folderpath, layername, prop=props)
 
 if __name__ == '__main__':
     main()
