@@ -128,7 +128,7 @@ class GeodesicLine2Gisfile(object):
 
 
     def gdlToGisFile(self, coords, folderpath, layername, fmt="ESRI Shapefile",
-                     epsg_cd=4326):
+                     epsg_cd=4326, prop=None):
         """
         Dump geodesic line coords to ESRI Shapefile
         and GeoJSON Linestring Feature
@@ -142,6 +142,8 @@ class GeodesicLine2Gisfile(object):
             fmt: output format ("ESRI Shapefile" (default), "GeoJSON").
 
             epsg_cd: Coordinate Reference System, EPSG code (default: 4326)
+
+            prop: property
 
         """
 
@@ -180,7 +182,7 @@ class GeodesicLine2Gisfile(object):
 
                     output.write({
                         'properties': {
-                            'prop': ''
+                            'prop': prop
                         },
                         'geometry': line_t
                     })
@@ -196,7 +198,7 @@ class GeodesicLine2Gisfile(object):
             print "Error: {0}".format(e.message)
 
 
-    def gdlToGisFileMulti(self, data, folderpath, layername, gjs=True):
+    def gdlToGisFileMulti(self, data, folderpath, layername, prop=[], gjs=True):
         """
         Run creation for a multi input: a list of lat/lon.
 
@@ -227,13 +229,13 @@ class GeodesicLine2Gisfile(object):
 
             gjs_lst = [gjs] * lendata
 
-            map(self.__multiGeodesicLineCreation, data, fp_lst, lyrnm_lst, gjs_lst)
+            map(self.__multiGeodesicLineCreation, data, fp_lst, lyrnm_lst, gjs_lst, prop)
 
         except Exception as e:
             print "Error: {0}".format(e.message)
 
 
-    def __multiGeodesicLineCreation(self, lons_lats, folderpath, layername, gjs):
+    def __multiGeodesicLineCreation(self, lons_lats, folderpath, layername, gjs, prop):
         """
         Creating geodesic lines in batch mode
 
@@ -241,7 +243,7 @@ class GeodesicLine2Gisfile(object):
 
         cd = self.gdlComp(lons_lats)
 
-        self.gdlToGisFile(cd, folderpath, layername)
+        self.gdlToGisFile(cd, folderpath, layername, prop=prop)
 
         if gjs:
             self.gdlToGisFile(cd, folderpath, layername, fmt="GeoJSON")
