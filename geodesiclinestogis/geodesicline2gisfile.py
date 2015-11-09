@@ -80,7 +80,7 @@ class GeodesicLine2Gisfile(object):
     """
 
 
-    def __init__(self, antimeridian=True, setlog=True, loglevel="INFO"):
+    def __init__(self, antimeridian=True, loglevel="INFO"):
         """
             antimeridian: solving antimeridian problem [True/False].
 
@@ -88,7 +88,6 @@ class GeodesicLine2Gisfile(object):
 
         """
         self.__antimeridian = antimeridian
-        self.__setlog = setlog
         self.__logger = self.__loggerInit(loglevel)
 
 
@@ -139,10 +138,9 @@ class GeodesicLine2Gisfile(object):
             coords_se = [(lon_1, lat_1)] + coords
             coords_se.append((lon_2, lat_2))
 
-            if self.__setlog:
-                self.__logger.info("\nGeodesic line succesfully created!")
-                self.__logger.info("Total points = {:,}".format(pts))
-                self.__logger.info("{:,.4f} km\n".format(dist / 1000.))
+            self.__logger.info("\nGeodesic line succesfully created!")
+            self.__logger.info("Total points = {:,}".format(pts))
+            self.__logger.info("{:,.4f} km\n".format(dist / 1000.))
 
             return coords_se
 
@@ -210,8 +208,7 @@ class GeodesicLine2Gisfile(object):
                         'geometry': line_t
                     })
 
-                if self.__setlog:
-                    self.__logger.info("{0} succesfully created!\n".format(fmt))
+                self.__logger.info("{0} succesfully created!\n".format(fmt))
 
             else:
                 self.__logger.error("No format to store output...")
