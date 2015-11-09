@@ -26,6 +26,7 @@
 
 import os
 import math
+import logging
 from pyproj import Geod
 from shapely.geometry import LineString, mapping
 from fiona import collection
@@ -79,7 +80,7 @@ class GeodesicLine2Gisfile(object):
     """
 
 
-    def __init__(self, antimeridian=True, prints=True):
+    def __init__(self, antimeridian=True, setlog=True, loglevel="INFO"):
         """
             antimeridian: solving antimeridian problem [True/False].
 
@@ -87,7 +88,29 @@ class GeodesicLine2Gisfile(object):
 
         """
         self.__antimeridian = antimeridian
-        self.__prints = prints
+        self.__setlog = setlog
+        self.__logger = self.__loggerInit(loglevel)
+
+
+    def __loggerInit(self, loglevel):
+        """
+        Logger init...
+        """
+        if loglevel=="INFO":
+            __log_level=logging.INFO
+        elif loglevel=="DEBUG":
+            __log_level=logging.DEBUG
+        elif loglevel=="ERROR":
+            __log_level=logging.ERROR
+        else:
+            __log_level=logging.NOTSET
+
+        logfmt = "[%(asctime)s - %(levelname)s] - %(message)s"
+        dtfmt = "%Y-%m-%d %I:%M:%S"
+
+        logging.basicConfig(level=__log_level, format=logfmt, datefmt=dtfmt)
+
+        return logging.getLogger()
 
 
     def gdlComp(self, lons_lats, km_pts=20):
@@ -116,15 +139,15 @@ class GeodesicLine2Gisfile(object):
             coords_se = [(lon_1, lat_1)] + coords
             coords_se.append((lon_2, lat_2))
 
-            if self.__prints:
-                print "\nGeodesic line succesfully created!"
-                print "Total points = {:,}".format(pts)
-                print "{:,.4f} km\n".format(dist / 1000.)
+            if self.__setlog:
+                self.__logger.info("\nGeodesic line succesfully created!")
+                self.__logger.info("Total points = {:,}".format(pts))
+                self.__logger.info("{:,.4f} km\n".format(dist / 1000.))
 
             return coords_se
 
         except Exception as e:
-            print "Error: {0}".format(e.message)
+            self.__logger.error("Error: {0}".format(e.message))
 
 
     def gdlToGisFile(self, coords, folderpath, layername, fmt="ESRI Shapefile",
@@ -161,7 +184,7 @@ class GeodesicLine2Gisfile(object):
                 filepath = os.path.join(folderpath, "{0}{1}".format(layername, ext))
 
                 if not os.path.exists(folderpath):
-                    print "Output folder does not exist. Set a valid folder path to store file."
+                    self.__logger.error("Output folder does not exist. Set a valid folder path to store file.")
                     return
 
                 if fmt == "GeoJSON" and os.path.isfile(filepath):
@@ -187,15 +210,15 @@ class GeodesicLine2Gisfile(object):
                         'geometry': line_t
                     })
 
-                if self.__prints:
-                    print "{0} succesfully created!\n".format(fmt)
+                if self.__setlog:
+                    self.__logger.info("{0} succesfully created!\n".format(fmt))
 
             else:
-                print "No format to store output..."
+                self.__logger.error("No format to store output...")
                 return
 
         except Exception as e:
-            print "Error: {0}".format(e.message)
+            self.__logger.error("Error: {0}".format(e.message))
 
 
     def gdlToGisFileMulti(self, data, folderpath, layername, prop=[], gjs=True):
@@ -232,7 +255,7 @@ class GeodesicLine2Gisfile(object):
             map(self.__multiGeodesicLineCreation, data, fp_lst, lyrnm_lst, gjs_lst, prop)
 
         except Exception as e:
-            print "Error: {0}".format(e.message)
+            self.__logger.error()
 
 
     def __multiGeodesicLineCreation(self, lons_lats, folderpath, layername, gjs, prop):
