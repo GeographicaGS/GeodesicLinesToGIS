@@ -19,7 +19,7 @@ with open('README.rst', 'r') as f:
 
 setup(
     name='GeodesicLinesToGIS',
-    version='0.4.0',
+    version='0.4.1',
 
     description='Computes geodesic lines from start point to end point and stores them in a GIS file (Shapefile and GeoJSON). The problem of geodesic lines crossing antimeridian is solved.',
     long_description=long_description,
