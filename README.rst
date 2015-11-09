@@ -13,12 +13,12 @@ Wikipedia <http://en.wikipedia.org/wiki/Geodesics_on_an_ellipsoid>`__).
 This code is builded on top of three libraries: Pyproj, Fiona and
 Shapely.
 
-There are several libraries to compute geodesic distances solving the geodesic 
-inverse problem (to find the shortest path between two given points). 
-I chose Pyproj because it works fine for this purpose and is an interface to a 
-widely used library in the geospatial industry (Proj4 C library). Actually Proj4 C 
-library (>= v.4.9.0) routines used to compute geodesic distance are a simple transcription 
-from excellent Geographiclib C++ Library developed by Charles Karney. Proj4 C library < v.4.9.0 
+There are several libraries to compute geodesic distances solving the geodesic
+inverse problem (to find the shortest path between two given points).
+I chose Pyproj because it works fine for this purpose and is an interface to a
+widely used library in the geospatial industry (Proj4 C library). Actually Proj4 C
+library (>= v.4.9.0) routines used to compute geodesic distance are a simple transcription
+from excellent Geographiclib C++ Library developed by Charles Karney. Proj4 C library < v.4.9.0
 uses Paul D. Thomas algorithms. You can see more about this here:
 `GeodeticMusings: a little benchmark of three Python libraries to
 compute geodesic
@@ -29,6 +29,8 @@ All computations are performed with WGS84 ellipsoid and the CRS
 
 In the examples section you can see the problem of calculating lines
 crossing antimeridian is solved.
+
+Numpy array is supported as inputa data.
 
 Geodesic lines examples
 -----------------------
@@ -50,9 +52,9 @@ Requirements
 Usage
 -----
 
-Usage is very simple. There are two modes: 
+Usage is very simple. There are two modes:
 - Single input (one
-start/end). 
+start/end).
 - Multiple input (more than one start/end).
 
 Single input
@@ -79,16 +81,16 @@ Folder path to store output file and filename:
 
     layername = "geodesicline"
 
-Create object. You can pass two parameters: 
-- antimeridian: [True, False] to solve antimeridian problem (default is True). 
+Create object. You can pass two parameters:
+- antimeridian: [True, False] to solve antimeridian problem (default is True).
 - prints: [True, False] print output messages (default is True).
 
 .. code:: python
 
     gtg = GeodesicLine2Gisfile()
 
-Launch computations. You can pass two parameter: 
-- lons\_lats: input coords returned by gcComp. 
+Launch computations. You can pass two parameter:
+- lons\_lats: input coords returned by gcComp.
 - km\_pts: compute one point each n km (default is 20 km)
 
 .. code:: python
@@ -130,9 +132,40 @@ Multiple input usage.
     folderpath = "/tmp/geod_line"
 
     layername = "geodesicline"
-        
+
     gtg = GeodesicLine2Gisfile()
-        
+
+    gtg.gdlToGisFileMulti(data, folderpath, layername)
+
+Numpy array (multiple) input
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Numpy array input usage.
+
+.. code:: python
+
+    import numpy as np
+    from geodesiclinestogis import GeodesicLine2Gisfile
+
+    data_ = [
+            (-6.,37.,-145.,11.),
+            (-150.,37.,140.,11.),
+            (-6.,37.,120.,50.),
+            (-3.6,40.5,-118.4,33.9),
+            (-118.4,33.9,139.8,35.5),
+            (-118.4,33.9,104.,1.35),
+            (-118.4,33.9,151.,-33.9),
+            (-20.4,33.9,178.,-33.9)
+        ]
+
+    data = np.array(data_)
+
+    folderpath = "/tmp/geod_line_np"
+
+    layername = "geodesicline"
+
+    gtg = GeodesicLine2Gisfile()
+
     gtg.gdlToGisFileMulti(data, folderpath, layername)
 
 About author
