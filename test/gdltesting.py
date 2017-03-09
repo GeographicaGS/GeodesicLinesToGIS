@@ -6,7 +6,7 @@
 #  and GeoJSON). This code is builded on top of
 #  three libraries: Pyproj, Fiona and Shapely
 #
-#  Author: Cayetano Benavent, 2015.
+#  Author: Cayetano Benavent, 2015-2017.
 #  https://github.com/GeographicaGS/GeodesicLinesToGIS
 #
 #  This program is free software; you can redistribute it and/or modify
