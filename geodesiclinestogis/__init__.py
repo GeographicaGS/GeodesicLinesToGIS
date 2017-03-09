@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#  Author: Cayetano Benavent, 2015.
+#  Author: Cayetano Benavent, 2015-2017
 #  https://github.com/GeographicaGS/GeodesicLinesToGIS
 #
 #  This program is free software; you can redistribute it and/or modify
@@ -19,8 +19,6 @@
 #  MA 02110-1301, USA.
 #
 
-__version__ = '0.4.2'
+__version__ = '0.4.3'
 
 __all__ = ['geodesicline2gisfile']
-
-from geodesicline2gisfile import GeodesicLine2Gisfile
