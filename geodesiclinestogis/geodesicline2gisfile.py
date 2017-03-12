@@ -265,7 +265,8 @@ class GeodesicLine2Gisfile(object):
 
             for i in range(lendata):
                 lyrnm = "{0}{1}".format(layername, i)
-                self.__multiGeodesicLineCreation(data[i], folderpath, lyrnm, gjs, prop[i])
+                _prop = prop[i] if prop else None
+                self.__multiGeodesicLineCreation(data[i], folderpath, lyrnm, gjs, _prop)
 
         except Exception as e:
             self.__logger.error("Error: {0}".format(e))
