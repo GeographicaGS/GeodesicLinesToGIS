@@ -145,7 +145,7 @@ class GeodesicLine2Gisfile(object):
             return coords_se
 
         except Exception as e:
-            self.__logger.error("Error: {0}".format(e.message))
+            self.__logger.error("Error: {0}".format(e))
 
 
     def gdlToGisFile(self, coords, folderpath, layername, fmt="ESRI Shapefile",
@@ -215,7 +215,7 @@ class GeodesicLine2Gisfile(object):
                 return
 
         except Exception as e:
-            self.__logger.error("Error: {0}".format(e.message))
+            self.__logger.error("Error: {0}".format(e))
 
 
     def gdlToGisFileMulti(self, data, folderpath, layername, prop=[], gjs=True):
@@ -243,13 +243,9 @@ class GeodesicLine2Gisfile(object):
         try:
             lendata = len(data)
 
-            lyrnm_lst = ["{0}{1}".format(layername, i) for i in range(lendata)]
-
-            fp_lst = [folderpath] * lendata
-
-            gjs_lst = [gjs] * lendata
-
-            map(self.__multiGeodesicLineCreation, data, fp_lst, lyrnm_lst, gjs_lst, prop)
+            for i in range(lendata):
+                lyrnm = "{0}{1}".format(layername, i)
+                self.__multiGeodesicLineCreation(data[i], folderpath, lyrnm, gjs, prop[i])
 
         except Exception as e:
             self.__logger.error()
