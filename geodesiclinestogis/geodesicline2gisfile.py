@@ -89,6 +89,7 @@ class GeodesicLine2Gisfile(object):
         """
         self.__antimeridian = antimeridian
         self.__logger = self.__loggerInit(loglevel)
+        self.__distances = []
 
 
     def __loggerInit(self, loglevel):
@@ -110,6 +111,10 @@ class GeodesicLine2Gisfile(object):
         logging.basicConfig(level=__log_level, format=logfmt, datefmt=dtfmt)
 
         return logging.getLogger()
+    
+    @property
+    def distances(self):
+        return self.__distances
 
 
     def gdlComp(self, lons_lats, km_pts=20):
@@ -137,7 +142,13 @@ class GeodesicLine2Gisfile(object):
 
             coords_se = [(lon_1, lat_1)] + coords
             coords_se.append((lon_2, lat_2))
-
+            
+            self.__distances.append({
+                "id": len(self.__distances),
+                "distance": dist,
+                "coords": lons_lats
+            })
+            
             self.__logger.info("Geodesic line succesfully created!")
             self.__logger.info("Total points = {:,}".format(pts))
             self.__logger.info("{:,.4f} km".format(dist / 1000.))
