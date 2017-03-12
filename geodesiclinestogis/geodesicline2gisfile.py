@@ -34,6 +34,13 @@ from fiona.transform import transform_geom
 from fiona.crs import from_epsg
 
 
+
+class ComputeGeodesicLineError(Exception):
+    pass
+
+class ExportGeodesicLineError(Exception):
+    pass
+
 class GeodesicLine2Gisfile(object):
     """
     Compute geodesic line from start start lon/lat to
@@ -146,6 +153,7 @@ class GeodesicLine2Gisfile(object):
 
         except Exception as e:
             self.__logger.error("Error: {0}".format(e))
+            raise ComputeGeodesicLineError(e)
 
 
     def gdlToGisFile(self, coords, folderpath, layername, fmt="ESRI Shapefile",
@@ -216,6 +224,7 @@ class GeodesicLine2Gisfile(object):
 
         except Exception as e:
             self.__logger.error("Error: {0}".format(e))
+            raise ExportGeodesicLineError(e)
 
 
     def gdlToGisFileMulti(self, data, folderpath, layername, prop=[], gjs=True):
@@ -248,7 +257,8 @@ class GeodesicLine2Gisfile(object):
                 self.__multiGeodesicLineCreation(data[i], folderpath, lyrnm, gjs, prop[i])
 
         except Exception as e:
-            self.__logger.error()
+            self.__logger.error("Error: {0}".format(e))
+            raise ExportGeodesicLineError(e)
 
 
     def __multiGeodesicLineCreation(self, lons_lats, folderpath, layername, gjs, prop):
