@@ -122,7 +122,16 @@ class GeodesicLine2Gisfile(object):
     @property
     def distances(self):
         return self.__distances
-
+    
+    def __dest_folder(self, dest, crtfld):
+        if not os.path.exists(dest):
+            if not crtfld:
+                self.__logger.error("Output folder does not exist. Set a valid folder path to store file.")
+                return
+            os.mkdir(dest)
+            self.__logger.debug("New output folder {0} created.".format(dest))
+        else:
+            self.__logger.debug("Output folder {0} already exists.".format(dest))
 
     def gdlComp(self, lons_lats, km_pts=20):
         """
@@ -168,7 +177,7 @@ class GeodesicLine2Gisfile(object):
 
 
     def gdlToGisFile(self, coords, folderpath, layername, fmt="ESRI Shapefile",
-                     epsg_cd=4326, prop=None):
+                     epsg_cd=4326, prop=None, crtfld=True):
         """
         Dump geodesic line coords to ESRI Shapefile
         and GeoJSON Linestring Feature
@@ -184,6 +193,8 @@ class GeodesicLine2Gisfile(object):
             epsg_cd: Coordinate Reference System, EPSG code (default: 4326)
 
             prop: property
+            
+            crtfld: create folder if not exists (default: True).
 
         """
 
@@ -200,9 +211,7 @@ class GeodesicLine2Gisfile(object):
 
                 filepath = os.path.join(folderpath, "{0}{1}".format(layername, ext))
 
-                if not os.path.exists(folderpath):
-                    self.__logger.error("Output folder does not exist. Set a valid folder path to store file.")
-                    return
+                self.__dest_folder(folderpath, crtfld)
 
                 if fmt == "GeoJSON" and os.path.isfile(filepath):
                     os.remove(filepath)
