@@ -19,6 +19,6 @@
 #  MA 02110-1301, USA.
 #
 
-__version__ = '0.4.3'
+__version__ = '0.5.0'
 
 __all__ = ['geodesicline2gisfile']
